@@ -48,12 +48,33 @@ for (const btn of callButtons) {
   });
 }
 
+document.getElementById("clear-btn").addEventListener("click", function () {
+  const historyContainer = document.getElementById("call-history");
+  // console.log(historyContainer.children);
+  while (historyContainer.children.length > 1) {
+    historyContainer.removeChild(historyContainer.children[1]);
+  }
+});
 
-document.getElementById('clear-btn').addEventListener('click',function(){
-    const historyContainer = document.getElementById('call-history');
-    // console.log(historyContainer.children);
-    while(historyContainer.children.length>1){
-        historyContainer.removeChild(historyContainer.children[1]);
-    }
-    
-})
+// copy function
+
+const copyButtons = document.getElementsByClassName("copy-btn");
+
+for (const btn of copyButtons) {
+  btn.addEventListener("click", function () {
+    const card = btn.parentElement.parentElement;
+    const serviceNumber = card.querySelector("h2").innerText;
+
+    navigator.clipboard
+      .writeText(serviceNumber)
+      .then(() => {
+        alert(`Copied: ${serviceNumber}`);
+
+        const countElement = document.getElementById("copy-count");
+        let count = parseInt(countElement.innerText);
+        count++;
+        countElement.innerText = count;
+      })
+      .catch((err) => console.log("Failed to copy:", err));
+  });
+}
