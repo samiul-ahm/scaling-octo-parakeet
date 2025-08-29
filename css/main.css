@@ -5,4 +5,10 @@
 @theme {
     --font-hind: "Hind Madurai", sans-serif;
     --font-inter: "Inter", sans-serif;
+    
 }
+
+.box-shadow{
+    box-shadow:  2px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
